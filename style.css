@@ -19,16 +19,15 @@ body {
     background: var(--color-background-body);
     color: var(--color-text-main);
     font-size: 18px;
-    /* Improved line height for better readability */
     line-height: 1.65; 
 }
 
 /* Header Styling */
 .site-header {
     background: linear-gradient(135deg, var(--color-background-header), var(--color-background-header-end));
-    padding: 60px var(--spacing-unit); /* Increased padding */
+    padding: 60px var(--spacing-unit);
     text-align: center;
-    border-bottom: 6px solid var(--color-accent-terracotta); /* Thicker border */
+    border-bottom: 6px solid var(--color-accent-terracotta);
     color: var(--color-text-light);
 }
 
@@ -46,7 +45,7 @@ body {
     font-weight: normal;
 }
 
-/* Main Content Wrapper (replaces the old 'section' max-width) */
+/* Main Content Wrapper */
 .content-wrapper {
     max-width: var(--max-content-width);
     margin: 40px auto;
@@ -58,7 +57,7 @@ body {
     padding: 30px 24px 40px;
     background: var(--color-section-bg);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); /* Stronger, softer shadow */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     border-top: 4px solid var(--color-accent-terracotta);
     margin-bottom: 40px;
 }
@@ -81,7 +80,7 @@ h3 {
     margin-top: 30px;
     margin-bottom: 15px;
     font-size: 1.5em;
-    border-bottom: 2px solid rgba(196, 122, 74, 0.1); /* Subtle underline */
+    border-bottom: 2px solid rgba(196, 122, 74, 0.1);
     padding-bottom: 5px;
 }
 
@@ -102,7 +101,7 @@ p {
 
 /* Contact Details */
 .address-card {
-    font-style: normal; /* Removes default italic style for <address> */
+    font-style: normal;
 }
 
 .address-card a {
@@ -132,17 +131,24 @@ footer {
     background: var(--color-footer-bg);
     border-top: 1px solid #d3c7b2;
 }
-/* Wir überschreiben den unteren Rand des Bildes innerhalb des Containers, 
-   damit der Text näher am Bild steht */
+
+/* --- Styling für Bild mit Unterschrift (Ersatz für <center>) --- */
+.image-container {
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Zentriert Bild und Text */
+}
+
+/* Wir überschreiben den unteren Rand des Bildes innerhalb des Containers */
 .image-container .image-full {
     margin-bottom: 10px; 
 }
 
 /* Das Aussehen der Unterschrift */
 figcaption {
-    font-size: 0.9em;       /* Etwas kleiner als der Fliesstext */
-    color: #666;            /* Etwas grauer für Dezenz */
-    font-style: italic;     /* Kursiv für den klassischen Look */
-    margin-bottom: 40px;    /* Der Abstand zum nächsten Abschnitt */
-    font-family: Georgia, 'Times New Roman', serif; /* Optional: Serifenschrift für Eleganz */
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 40px;
+    font-family: Georgia, 'Times New Roman', serif;
 }

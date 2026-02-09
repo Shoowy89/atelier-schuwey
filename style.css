@@ -152,3 +152,40 @@ figcaption {
     margin-bottom: 40px;
     font-family: Georgia, 'Times New Roman', serif;
 }
+
+/* Der "Bilderrahmen" für die Ferien-Info */
+.vacation-frame {
+    border: 3px solid var(--color-accent-terracotta); /* "Holzrahmen" Effekt */
+    padding: 8px; /* Abstand zwischen den Linien */
+    margin-bottom: 35px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.vacation-content {
+    border: 1px solid rgba(196, 122, 74, 0.3); /* Inneres Passepartout-Detail */
+    padding: 25px 15px;
+    text-align: center;
+}
+
+.vacation-title {
+    color: var(--color-accent-terracotta);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 0 10px 0 !important;
+    font-size: 1.1em;
+}
+
+.vacation-dates {
+    font-size: 1.4em; /* Grössere Schrift */
+    font-weight: bold;
+    margin: 0 0 5px 0 !important;
+    color: var(--color-background-header); /* Dunkelblau für Kontrast */
+}
+
+.vacation-status {
+    font-size: 1.1em;
+    margin: 0 !important;
+    font-style: italic;
+}

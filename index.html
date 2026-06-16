@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Einrahmungen & Bilderrahmen Luzern – Atelier Schuwey</title>
-    
-    <meta name="description" content="Ihr Spezialist für individuelle Einrahmungen, Bilderrahmen und Passepartouts in Luzern. Persönliche Beratung im Atelier an der Grendelstrasse. Museumsglas & Massanfertigung.">
-    <meta name="keywords" content="Einrahmung, Einrahmungen, Bilderrahmen, Rahmenatelier, Luzern, Passepartout, Kunst, Rahmen nach Mass">
-    
+
+    <meta name="description" content="Ihr Spezialist für individuelle Einrahmungen, Bilderrahmen, Passepartouts und Rahmenvergoldung in Luzern. Persönliche Beratung im Atelier an der Grendelstrasse. Museumsglas & Massanfertigung.">
+    <meta name="keywords" content="Einrahmung, Einrahmungen, Bilderrahmen, Rahmenatelier, Luzern, Passepartout, Kunst, Rahmen nach Mass, Rahmenvergoldung">
+
     <meta name="geo.region" content="CH-LU">
     <meta name="geo.placename" content="Luzern">
     <meta name="geo.position" content="47.053788;8.307567">
     <meta name="ICBM" content="47.053788, 8.307567">
 
-    <link rel="stylesheet" href="style.css">
-    
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
@@ -24,13 +22,199 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" href="favicon.ico">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FAF7F2',
+                        parchment: '#F3EDE3',
+                        terracotta: '#B8694A',
+                        'terracotta-light': '#D4956F',
+                        wood: '#3D2B1F',
+                        'wood-mid': '#5C4033',
+                        gold: '#B8956A',
+                        'gold-light': '#D4B896',
+                        olive: '#6B7355',
+                        'olive-light': '#8A9478',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        :root {
+            --cream: #FAF7F2;
+            --terracotta: #B8694A;
+            --wood: #3D2B1F;
+            --gold: #B8956A;
+            --olive: #6B7355;
+        }
+
+        body {
+            font-family: 'Source Sans 3', system-ui, sans-serif;
+            background-color: var(--cream);
+            color: var(--wood);
+        }
+
+        /* Sticky header transition */
+        #site-header {
+            transition: background-color 0.4s ease, box-shadow 0.4s ease, padding 0.3s ease;
+        }
+        #site-header.scrolled {
+            background-color: rgba(250, 247, 242, 0.97);
+            box-shadow: 0 4px 24px rgba(61, 43, 31, 0.08);
+            backdrop-filter: blur(12px);
+        }
+        #site-header.scrolled .nav-link {
+            color: var(--wood);
+        }
+        #site-header.scrolled .logo-text {
+            color: var(--wood);
+        }
+
+        /* Hero overlay */
+        .hero-overlay {
+            background: linear-gradient(
+                135deg,
+                rgba(61, 43, 31, 0.72) 0%,
+                rgba(92, 64, 51, 0.55) 40%,
+                rgba(184, 105, 74, 0.35) 100%
+            );
+        }
+
+        /* Decorative gold line */
+        .gold-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--terracotta));
+        }
+
+        /* Summer notice box */
+        .summer-notice {
+            background: linear-gradient(135deg, #FFF9F0 0%, #F8EFE0 100%);
+            border: 1px solid rgba(184, 149, 106, 0.35);
+            box-shadow: 0 8px 32px rgba(184, 105, 74, 0.1);
+        }
+        .summer-notice::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--terracotta), var(--gold));
+            border-radius: 3px 3px 0 0;
+        }
+
+        /* Gallery hover */
+        .gallery-item {
+            overflow: hidden;
+        }
+        .gallery-item img {
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+        .gallery-overlay {
+            background: linear-gradient(to top, rgba(61, 43, 31, 0.75) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Service cards */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(61, 43, 31, 0.1);
+        }
+
+        /* CTA buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--terracotta) 0%, #A05838 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(184, 105, 74, 0.35);
+        }
+        .btn-secondary {
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: var(--wood);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Portrait frame effect */
+        .portrait-frame {
+            box-shadow:
+                0 0 0 8px #F3EDE3,
+                0 0 0 10px rgba(184, 149, 106, 0.4),
+                0 20px 50px rgba(61, 43, 31, 0.2);
+        }
+
+        /* Temperature notice */
+        .temp-notice {
+            background: linear-gradient(135deg, rgba(184, 149, 106, 0.12) 0%, rgba(107, 115, 85, 0.08) 100%);
+            border-left: 3px solid var(--gold);
+        }
+
+        /* Mobile menu */
+        #mobile-menu {
+            transition: max-height 0.4s ease, opacity 0.3s ease;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+        #mobile-menu.closed {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        /* Fade-in on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hours table */
+        .hours-row:nth-child(even) {
+            background-color: rgba(243, 237, 227, 0.5);
+        }
+    </style>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Atelier Schuwey",
       "image": "portrait.jpg",
-      "description": "Atelier für individuelle Einrahmungen und Passepartouts in Luzern.",
+      "description": "Atelier für individuelle Einrahmungen, Passepartouts und Rahmenvergoldung in Luzern.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Grendelstrasse 15",
@@ -63,66 +247,437 @@
     }
     </script>
 </head>
-<body>
+<body class="antialiased">
 
-<header class="site-header">
-    <h1>ATELIER SCHUWEY</h1>
-    <h2>Einrahmungen und Passepartout</h2>
-</header>
+    <!-- ═══════════════════ STICKY HEADER ═══════════════════ -->
+    <header id="site-header" class="fixed top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="max-w-6xl mx-auto px-5 sm:px-8">
+            <div class="flex items-center justify-between py-5 md:py-6">
+                <a href="#" class="group">
+                    <span class="logo-text block font-serif text-xl sm:text-2xl font-semibold tracking-wide text-white transition-colors duration-300 group-hover:text-gold-light">
+                        Atelier Schuwey
+                    </span>
+                    <span class="logo-text block text-xs sm:text-sm tracking-[0.2em] uppercase text-white/70 transition-colors duration-300">
+                        Einrahmungen · Luzern
+                    </span>
+                </a>
 
-<main class="content-wrapper">
-   <!--
-   <div class="vacation-frame">
-        <div class="vacation-content">
-            <p class="vacation-title">Betriebsferien</p>
-            <p class="vacation-dates">7. bis 21. Februar 2026</p>
-            <p class="vacation-status">Das Atelier bleibt geschlossen.</p>
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-8" aria-label="Hauptnavigation">
+                    <a href="#aktuelles" class="nav-link text-sm tracking-wide text-white/90 hover:text-gold-light transition-colors">Aktuelles</a>
+                    <a href="#atelier" class="nav-link text-sm tracking-wide text-white/90 hover:text-gold-light transition-colors">Atelier</a>
+                    <a href="#leistungen" class="nav-link text-sm tracking-wide text-white/90 hover:text-gold-light transition-colors">Leistungen</a>
+                    <a href="#galerie" class="nav-link text-sm tracking-wide text-white/90 hover:text-gold-light transition-colors">Galerie</a>
+                    <a href="#kontakt" class="nav-link text-sm tracking-wide text-white/90 hover:text-gold-light transition-colors">Kontakt</a>
+                    <a href="tel:0414103180" class="btn-primary text-white text-sm font-medium px-5 py-2.5 rounded-sm tracking-wide">
+                        Jetzt anrufen
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-toggle" class="md:hidden text-white p-2 -mr-2" aria-label="Menü öffnen" aria-expanded="false">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+                        <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
         </div>
-    </div>
-    --> 
-        <img src="portrait.jpg" alt="Magdalena Schuwey bei der Arbeit im Atelier" class="portrait">
-        
-        <p>Seit über 30 Jahren befindet sich das traditionelle Rahmenatelier an der Grendelstrasse (7. Etage) in Luzern.</p>
-        
-        <p>Mein Atelier bietet ein umfangreiches Rahmenangebot an: Nebst individuell angefertigten Holzrahmen gibt es auch eine grosse Auswahl an Aluminiumrahmen.</p>
 
-        <p>Die von mir hergestellten Passepartouts sind säurefrei und somit alterungsbeständig. Ein grosses Angebot an Wechselrahmen ist ebenfalls vorhanden.</p>
+        <!-- Mobile Nav -->
+        <nav id="mobile-menu" class="md:hidden closed bg-cream/98 backdrop-blur-md border-t border-gold/20" aria-label="Mobile Navigation">
+            <div class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
+                <a href="#aktuelles" class="mobile-link py-3 text-wood hover:text-terracotta transition-colors border-b border-parchment">Aktuelles</a>
+                <a href="#atelier" class="mobile-link py-3 text-wood hover:text-terracotta transition-colors border-b border-parchment">Atelier</a>
+                <a href="#leistungen" class="mobile-link py-3 text-wood hover:text-terracotta transition-colors border-b border-parchment">Leistungen</a>
+                <a href="#galerie" class="mobile-link py-3 text-wood hover:text-terracotta transition-colors border-b border-parchment">Galerie</a>
+                <a href="#kontakt" class="mobile-link py-3 text-wood hover:text-terracotta transition-colors border-b border-parchment">Kontakt</a>
+                <a href="tel:0414103180" class="btn-primary text-white text-center font-medium px-5 py-3 rounded-sm mt-3">
+                    Jetzt anrufen
+                </a>
+            </div>
+        </nav>
+    </header>
 
-        <p>Für die Einrahmungen verwende ich entspiegeltes Glas bis hin zum Museumsglas. Auch normales Glas (Floatglas) ist erhältlich.</p>
+    <main>
 
-        <p>Persönliche Beratung, Einrahmungen in bester Qualität und faire Preise verstehen sich von selbst.</p>
-        
-        <figure class="image-container">
-            <img src="stadt.jpg" alt="Aussicht aus dem Atelier auf den Vierwaldstättersee, Luzern" class="image-full">
-            <figcaption>Aussicht auf die Stadt Luzern aus dem Atelier</figcaption>
-        </figure>
-        
-    </div>
+        <!-- ═══════════════════ HERO ═══════════════════ -->
+        <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
+            <img
+                src="stadt.jpg"
+                alt="Aussicht aus dem Atelier auf Luzern und den Vierwaldstättersee"
+                class="absolute inset-0 w-full h-full object-cover object-center"
+                fetchpriority="high"
+            >
+            <div class="hero-overlay absolute inset-0"></div>
 
-    <section class="contact-info">
-      
-        <h3>Öffnungszeiten:</h3>
-        <ul class="hours-list">
-            <li>Montag, Dienstag, Donnerstag und Freitag</li>
-            <li>09.00 bis 12.00 Uhr und 13.30 bis 17.00 Uhr</li>
-            <li>oder nach Vereinbarung</li>
-        </ul>
+            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
+                <p class="text-gold-light text-sm sm:text-base tracking-[0.35em] uppercase mb-6 font-light">
+                    Rahmenatelier · Luzern
+                </p>
+                <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium text-white leading-[1.05] mb-6">
+                    Atelier<br class="sm:hidden"> Schuwey
+                </h1>
+                <div class="gold-line mx-auto mb-8"></div>
+                <p class="text-white/90 text-lg sm:text-xl md:text-2xl font-light max-w-2xl mx-auto leading-relaxed mb-10">
+                    Einrahmungen, Passepartout &amp; Rahmenvergoldung —<br class="hidden sm:inline">
+                    mit Liebe zum Handwerk seit über 30 Jahren.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="tel:0414103180" class="btn-primary text-white font-medium px-8 py-3.5 rounded-sm tracking-wide w-full sm:w-auto text-center">
+                        Jetzt anrufen
+                    </a>
+                    <a href="#kontakt" class="btn-secondary border border-white/60 text-white font-medium px-8 py-3.5 rounded-sm tracking-wide w-full sm:w-auto text-center hover:border-white">
+                        Termin vereinbaren
+                    </a>
+                </div>
+            </div>
 
-        <address class="address-card">
-            Atelier Magdalena Schuwey<br>
-            Grendelstrasse 15<br>
-            6004 Luzern<br>
-            <br>
-            Tel. <a href="tel:0414103180">041 410 31 80</a> oder <a href="tel:0786210366">078 621 03 66</a>
-        </address>
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 animate-bounce">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7"/>
+                </svg>
+            </div>
+        </section>
 
-        <p class="final-note">Ich freue mich über Ihren Besuch</p>
-    </section>
-</main>
+        <!-- ═══════════════════ SOMMER-HINWEIS ═══════════════════ -->
+        <section id="aktuelles" class="py-16 sm:py-20 px-5 sm:px-8 bg-cream">
+            <div class="max-w-3xl mx-auto">
+                <div class="summer-notice relative rounded-sm p-8 sm:p-10 fade-in">
+                    <div class="flex flex-col sm:flex-row gap-6 items-start">
+                        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-gold/15 flex items-center justify-center text-3xl" aria-hidden="true">
+                            ☀️
+                        </div>
+                        <div>
+                            <p class="text-xs tracking-[0.25em] uppercase text-terracotta font-medium mb-2">Aktuelles · Sommer 2026</p>
+                            <h2 class="font-serif text-2xl sm:text-3xl text-wood font-medium mb-4">Ein freundlicher Hinweis</h2>
+                            <p class="text-wood-mid text-base sm:text-lg leading-relaxed">
+                                Mein Atelier ist der perfekte Arbeitsplatz. Allerdings mit einer Einschränkung: Oberste Etage, Südseite. Bei hohen Temperaturen wird es Nachmittags zu heiss um Arbeiten zu können. Deshalb ist an Hitzetagen nur morgens geöffnet. Danke für Ihr Verständnis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<footer>
-    © Atelier Schuwey – Luzern
-</footer>
+        <!-- ═══════════════════ ÜBER DAS ATELIER ═══════════════════ -->
+        <section id="atelier" class="py-20 sm:py-28 px-5 sm:px-8 bg-parchment">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    <div class="fade-in order-2 lg:order-1">
+                        <p class="text-xs tracking-[0.25em] uppercase text-olive font-medium mb-3">Über das Atelier</p>
+                        <h2 class="font-serif text-4xl sm:text-5xl text-wood font-medium mb-6 leading-tight">
+                            Handwerk mit<br>Herz &amp; Erfahrung
+                        </h2>
+                        <div class="gold-line mb-8"></div>
+                        <div class="space-y-5 text-wood-mid text-base sm:text-lg leading-relaxed">
+                            <p>Seit über 30 Jahren befindet sich das traditionelle Rahmenatelier an der Grendelstrasse (7. Etage) in Luzern.</p>
+                            <p>Mein Atelier bietet ein umfangreiches Rahmenangebot an: Nebst individuell angefertigten Holzrahmen gibt es auch eine grosse Auswahl an Aluminiumrahmen.</p>
+                            <p>Die von mir hergestellten Passepartouts sind säurefrei und somit alterungsbeständig. Ein grosses Angebot an Wechselrahmen ist ebenfalls vorhanden.</p>
+                            <p>Für die Einrahmungen verwende ich entspiegeltes Glas bis hin zum Museumsglas. Auch normales Glas (Floatglas) ist erhältlich.</p>
+                            <p class="text-wood font-medium italic">Persönliche Beratung, Einrahmungen in bester Qualität und faire Preise verstehen sich von selbst.</p>
+                        </div>
+                    </div>
+                    <div class="fade-in order-1 lg:order-2 flex justify-center">
+                        <figure class="relative">
+                            <img
+                                src="portrait.jpg"
+                                alt="Magdalena Schuwey bei der Arbeit im Atelier"
+                                class="portrait-frame w-full max-w-md rounded-sm object-cover aspect-[4/5]"
+                                loading="lazy"
+                            >
+                            <figcaption class="mt-4 text-center text-sm text-olive italic font-serif">
+                                Magdalena Schuwey im Atelier
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ LEISTUNGEN ═══════════════════ -->
+        <section id="leistungen" class="py-20 sm:py-28 px-5 sm:px-8 bg-cream">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-14 fade-in">
+                    <p class="text-xs tracking-[0.25em] uppercase text-olive font-medium mb-3">Was wir bieten</p>
+                    <h2 class="font-serif text-4xl sm:text-5xl text-wood font-medium mb-4">Unsere Leistungen</h2>
+                    <div class="gold-line mx-auto"></div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <article class="service-card bg-white p-8 rounded-sm border border-parchment fade-in">
+                        <div class="w-10 h-10 rounded-full bg-terracotta/10 flex items-center justify-center mb-5">
+                            <svg class="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1" stroke-width="1.5"/><rect x="7" y="7" width="10" height="10" rx="0.5" stroke-width="1.5"/></svg>
+                        </div>
+                        <h3 class="font-serif text-2xl text-wood font-medium mb-3">Einrahmungen</h3>
+                        <p class="text-wood-mid leading-relaxed">Individuelle Holz- und Aluminiumrahmen, massgeschneidert für Ihre Kunstwerke, Fotografien und Erinnerungsstücke.</p>
+                    </article>
+
+                    <article class="service-card bg-white p-8 rounded-sm border border-parchment fade-in">
+                        <div class="w-10 h-10 rounded-full bg-gold/15 flex items-center justify-center mb-5">
+                            <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        </div>
+                        <h3 class="font-serif text-2xl text-wood font-medium mb-3">Passepartout</h3>
+                        <p class="text-wood-mid leading-relaxed">Säurefreie, alterungsbeständige Passepartouts — handgefertigt für den perfekten Schutz und die ideale Präsentation.</p>
+                    </article>
+
+                    <article class="service-card bg-white p-8 rounded-sm border border-parchment fade-in">
+                        <div class="w-10 h-10 rounded-full bg-olive/15 flex items-center justify-center mb-5">
+                            <svg class="w-5 h-5 text-olive" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                        </div>
+                        <h3 class="font-serif text-2xl text-wood font-medium mb-3">Rahmenvergoldung</h3>
+                        <p class="text-wood-mid leading-relaxed">Edle Vergoldungen für Rahmen mit besonderem Anspruch — traditionelle Handarbeit für ein zeitloses Ergebnis.</p>
+                    </article>
+
+                    <article class="service-card bg-white p-8 rounded-sm border border-parchment fade-in">
+                        <div class="w-10 h-10 rounded-full bg-terracotta/10 flex items-center justify-center mb-5">
+                            <svg class="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        </div>
+                        <h3 class="font-serif text-2xl text-wood font-medium mb-3">Museumsglas</h3>
+                        <p class="text-wood-mid leading-relaxed">Entspiegeltes Glas bis hin zum Museumsglas — für optimalen UV-Schutz und brillante Farbwiedergabe Ihrer Werke.</p>
+                    </article>
+
+                    <article class="service-card bg-white p-8 rounded-sm border border-parchment fade-in">
+                        <div class="w-10 h-10 rounded-full bg-gold/15 flex items-center justify-center mb-5">
+                            <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                        </div>
+                        <h3 class="font-serif text-2xl text-wood font-medium mb-3">Wechselrahmen</h3>
+                        <p class="text-wood-mid leading-relaxed">Grosses Angebot an Wechselrahmen — flexibel und elegant für wechselnde Ausstellungen zu Hause.</p>
+                    </article>
+
+                    <article class="service-card bg-white p-8 rounded-sm border border-parchment fade-in">
+                        <div class="w-10 h-10 rounded-full bg-olive/15 flex items-center justify-center mb-5">
+                            <svg class="w-5 h-5 text-olive" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        </div>
+                        <h3 class="font-serif text-2xl text-wood font-medium mb-3">Persönliche Beratung</h3>
+                        <p class="text-wood-mid leading-relaxed">Individuelle Beratung direkt im Atelier — gemeinsam finden wir den perfekten Rahmen für Ihr Werk.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ GALERIE ═══════════════════ -->
+        <section id="galerie" class="py-20 sm:py-28 px-5 sm:px-8 bg-parchment">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-14 fade-in">
+                    <p class="text-xs tracking-[0.25em] uppercase text-olive font-medium mb-3">Einblicke</p>
+                    <h2 class="font-serif text-4xl sm:text-5xl text-wood font-medium mb-4">Atelier &amp; Umgebung</h2>
+                    <div class="gold-line mx-auto mb-6"></div>
+                    <p class="text-wood-mid max-w-xl mx-auto">Ein Blick in unser Atelier und die wunderschöne Aussicht über Luzern.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-5 sm:gap-6">
+                    <figure class="gallery-item relative rounded-sm cursor-pointer fade-in sm:row-span-2">
+                        <img
+                            src="portrait.jpg"
+                            alt="Magdalena Schuwey präsentiert ein fertig gerahmtes Kunstwerk"
+                            class="w-full h-full object-cover aspect-[3/4] sm:aspect-auto sm:min-h-[520px]"
+                            loading="lazy"
+                        >
+                        <div class="gallery-overlay absolute inset-0 flex items-end p-6">
+                            <figcaption class="text-white font-serif text-xl">Handwerk im Atelier</figcaption>
+                        </div>
+                    </figure>
+
+                    <figure class="gallery-item relative rounded-sm cursor-pointer fade-in">
+                        <img
+                            src="stadt.jpg"
+                            alt="Panoramablick auf Luzern und den Vierwaldstättersee"
+                            class="w-full object-cover aspect-[4/3]"
+                            loading="lazy"
+                        >
+                        <div class="gallery-overlay absolute inset-0 flex items-end p-6">
+                            <figcaption class="text-white font-serif text-xl">Aussicht aus dem Atelier</figcaption>
+                        </div>
+                    </figure>
+
+                    <figure class="gallery-item relative rounded-sm cursor-pointer fade-in bg-wood/5 border border-gold/20 flex items-center justify-center aspect-[4/3] min-h-[200px]">
+                        <div class="text-center p-6">
+                            <p class="font-serif text-2xl text-wood/40 mb-2">Ihre Werke hier</p>
+                            <p class="text-sm text-olive/60">Platz für weitere Galerie-Bilder</p>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ KONTAKT ═══════════════════ -->
+        <section id="kontakt" class="py-20 sm:py-28 px-5 sm:px-8 bg-cream">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-14 fade-in">
+                    <p class="text-xs tracking-[0.25em] uppercase text-olive font-medium mb-3">Besuchen Sie uns</p>
+                    <h2 class="font-serif text-4xl sm:text-5xl text-wood font-medium mb-4">Kontakt &amp; Anfahrt</h2>
+                    <div class="gold-line mx-auto"></div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
+                    <!-- Contact Info -->
+                    <div class="fade-in space-y-8">
+                        <div class="bg-white p-8 sm:p-10 rounded-sm border border-parchment shadow-sm">
+                            <h3 class="font-serif text-2xl text-wood font-medium mb-6">Atelier Magdalena Schuwey</h3>
+                            <address class="not-italic text-wood-mid text-lg leading-relaxed space-y-1">
+                                <p>Grendelstrasse 15</p>
+                                <p>6004 Luzern</p>
+                                <p class="text-sm text-olive mt-2">7. Etage · Südseite</p>
+                            </address>
+
+                            <div class="mt-8 pt-6 border-t border-parchment space-y-3">
+                                <p>
+                                    <span class="text-olive text-sm uppercase tracking-wider">Telefon</span><br>
+                                    <a href="tel:0414103180" class="text-terracotta font-medium text-lg hover:text-wood transition-colors">041 410 31 80</a>
+                                </p>
+                                <p>
+                                    <span class="text-olive text-sm uppercase tracking-wider">Mobil</span><br>
+                                    <a href="tel:0786210366" class="text-terracotta font-medium text-lg hover:text-wood transition-colors">078 621 03 66</a>
+                                </p>
+                            </div>
+
+                            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                                <a href="tel:0414103180" class="btn-primary text-white font-medium px-6 py-3 rounded-sm tracking-wide text-center flex-1">
+                                    Jetzt anrufen
+                                </a>
+                                <a href="tel:0786210366" class="btn-secondary border border-wood/30 text-wood font-medium px-6 py-3 rounded-sm tracking-wide text-center flex-1">
+                                    Termin vereinbaren
+                                </a>
+                            </div>
+                        </div>
+
+                        <p class="text-center font-serif text-xl italic text-olive fade-in">
+                            Ich freue mich über Ihren Besuch
+                        </p>
+                    </div>
+
+                    <!-- Opening Hours -->
+                    <div class="fade-in">
+                        <div class="bg-white p-8 sm:p-10 rounded-sm border border-parchment shadow-sm">
+                            <h3 class="font-serif text-2xl text-wood font-medium mb-6">Öffnungszeiten</h3>
+
+                            <div class="space-y-0 rounded-sm overflow-hidden border border-parchment">
+                                <div class="hours-row flex justify-between items-center px-5 py-4">
+                                    <span class="text-wood-mid">Montag</span>
+                                    <span class="text-wood font-medium">09.00–12.00 · 13.30–17.00</span>
+                                </div>
+                                <div class="hours-row flex justify-between items-center px-5 py-4">
+                                    <span class="text-wood-mid">Dienstag</span>
+                                    <span class="text-wood font-medium">09.00–12.00 · 13.30–17.00</span>
+                                </div>
+                                <div class="hours-row flex justify-between items-center px-5 py-4">
+                                    <span class="text-wood-mid text-olive/60">Mittwoch</span>
+                                    <span class="text-olive/60">Geschlossen</span>
+                                </div>
+                                <div class="hours-row flex justify-between items-center px-5 py-4">
+                                    <span class="text-wood-mid">Donnerstag</span>
+                                    <span class="text-wood font-medium">09.00–12.00 · 13.30–17.00</span>
+                                </div>
+                                <div class="hours-row flex justify-between items-center px-5 py-4">
+                                    <span class="text-wood-mid">Freitag</span>
+                                    <span class="text-wood font-medium">09.00–12.00 · 13.30–17.00</span>
+                                </div>
+                            </div>
+
+                            <p class="mt-4 text-sm text-olive italic">oder nach Vereinbarung</p>
+
+                            <!-- Temperature notice -->
+                            <div class="temp-notice mt-6 p-5 rounded-sm">
+                                <p class="text-wood-mid text-base leading-relaxed">
+                                    🌡️ Bei Temperaturen über 30 °C bleibt das Atelier am Nachmittag geschlossen.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Map link -->
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query=Grendelstrasse+15,+6004+Luzern"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-6 flex items-center justify-center gap-2 text-terracotta hover:text-wood transition-colors py-3 group"
+                        >
+                            <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            <span class="font-medium tracking-wide">Route planen auf Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="bg-wood text-white/80 py-12 px-5 sm:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <p class="font-serif text-2xl text-white font-medium mb-1">Atelier Schuwey</p>
+                    <p class="text-sm text-white/50 tracking-wide">Einrahmungen · Passepartout · Rahmenvergoldung</p>
+                </div>
+                <div class="text-center md:text-right text-sm space-y-1">
+                    <p>Grendelstrasse 15 · 6004 Luzern</p>
+                    <p>
+                        <a href="tel:0414103180" class="hover:text-gold-light transition-colors">041 410 31 80</a>
+                        ·
+                        <a href="tel:0786210366" class="hover:text-gold-light transition-colors">078 621 03 66</a>
+                    </p>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t border-white/10 text-center text-sm text-white/40">
+                <p>&copy; Atelier Schuwey – Luzern</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky header scroll effect
+        const header = document.getElementById('site-header');
+        const heroHeight = window.innerHeight * 0.5;
+
+        function updateHeader() {
+            if (window.scrollY > heroHeight) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+        window.addEventListener('scroll', updateHeader, { passive: true });
+        updateHeader();
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('open');
+            mobileMenu.classList.toggle('open', !isOpen);
+            mobileMenu.classList.toggle('closed', isOpen);
+            iconOpen.classList.toggle('hidden', !isOpen);
+            iconClose.classList.toggle('hidden', isOpen);
+            menuToggle.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                mobileMenu.classList.add('closed');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Fade-in on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        fadeElements.forEach(el => observer.observe(el));
+    </script>
 
 </body>
 </html>
